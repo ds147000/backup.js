@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./index.mini.js" ></script>
+  <script>
+    window.backup.getNewUrl = function(oldUrl) {
+      if (/\/assets.xrkmm.cn\//.test(oldUrl) === false) return
+      return oldUrl.replace(/http.*?assets\.xrkmm\.cn\//, '')
+    }
+  </script>
+  <link href="//assets.xrkmm.cn/bundle/css/vendors~bundle.68779033.css?1" rel="stylesheet">
+  <link href="//assets.xrkmm.cn/bundle/css/bundle.a6dc490d.css?1" rel="stylesheet">
+  <link rel="stylesheet" href="./123.css">
+</head>
+<body>
+  <h1>降级静态资源</h1>
+</body>
+</html>

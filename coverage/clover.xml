@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1636362906331" clover="3.2.0">
+  <project timestamp="1636362906331" name="All files">
+    <metrics statements="23" coveredstatements="23" conditionals="10" coveredconditionals="10" methods="6" coveredmethods="6" elements="39" coveredelements="39" complexity="0" loc="23" ncloc="23" packages="1" files="1" classes="1"/>
+    <file name="index.ts" path="/Volumes/T7_Touch/code/backup.js/src/app/index.ts">
+      <metrics statements="23" coveredstatements="23" conditionals="10" coveredconditionals="10" methods="6" coveredmethods="6"/>
+      <line num="3" count="1" type="stmt"/>
+      <line num="4" count="1" type="stmt"/>
+      <line num="7" count="2" type="stmt"/>
+      <line num="8" count="2" type="stmt"/>
+      <line num="9" count="2" type="cond" truecount="2" falsecount="0"/>
+      <line num="10" count="1" type="stmt"/>
+      <line num="14" count="2" type="stmt"/>
+      <line num="15" count="2" type="stmt"/>
+      <line num="16" count="2" type="cond" truecount="2" falsecount="0"/>
+      <line num="17" count="1" type="stmt"/>
+      <line num="21" count="21" type="stmt"/>
+      <line num="23" count="21" type="stmt"/>
+      <line num="24" count="21" type="stmt"/>
+      <line num="25" count="21" type="stmt"/>
+      <line num="26" count="21" type="stmt"/>
+      <line num="30" count="21" type="stmt"/>
+      <line num="32" count="21" type="stmt"/>
+      <line num="33" count="21" type="stmt"/>
+      <line num="34" count="21" type="stmt"/>
+      <line num="38" count="12" type="cond" truecount="2" falsecount="0"/>
+      <line num="40" count="10" type="cond" truecount="4" falsecount="0"/>
+      <line num="41" count="7" type="stmt"/>
+      <line num="45" count="1" type="stmt"/>
+    </file>
+  </project>
+</coverage>
