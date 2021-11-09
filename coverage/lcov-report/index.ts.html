@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">97.14% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>32/32</span>
+                <span class='fraction'>34/35</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">91.66% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>12/12</span>
+                <span class='fraction'>11/12</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>27/27</span>
+                <span class='fraction'>30/30</span>
             </div>
         
             
@@ -112,7 +112,13 @@
 <a name='L53'></a><a href='#L53'>53</a>
 <a name='L54'></a><a href='#L54'>54</a>
 <a name='L55'></a><a href='#L55'>55</a>
-<a name='L56'></a><a href='#L56'>56</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -123,11 +129,6 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -135,6 +136,17 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -158,7 +170,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -170,27 +182,33 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&nbsp;
 class Backup {
   static number = 0
-  static maxNumer = 20
+  static max = 40
 &nbsp;
-  static handleLink(target: HTMLLinkElement): void {
+  static handleLink(target: HTMLLinkElement): boolean {
     const oldUrl = target.href
     const url = Backup.getNewUrl(oldUrl, 'LINK')
-    if (Backup.isStop(oldUrl, url)) return // 相同地址，停止
+    if (Backup.isStop(oldUrl, url)) return false // 相同地址，停止
     Backup.setNewLink(url)
+&nbsp;
+    return true
   }
 &nbsp;
-  static handleScript(target: HTMLScriptElement): void {
+  static handleScript(target: HTMLScriptElement): boolean {
     const oldUrl = target.src
     const url = Backup.getNewUrl(oldUrl, 'SCRIPT')
-    if (Backup.isStop(oldUrl, url)) return // 相同地址，停止
+    if (Backup.isStop(oldUrl, url)) return false // 相同地址，停止
     Backup.setNewScript(url)
+&nbsp;
+    return true
   }
 &nbsp;
-  static handleImage(target: HTMLImageElement): void {
+  static handleImage(target: HTMLImageElement): boolean {
     const oldUrl = target.src
     const url = Backup.getNewUrl(oldUrl, 'IMG')
-    if (Backup.isStop(oldUrl, url)) return // 相同地址，停止
+    if (Backup.isStop(oldUrl, url)) return false // 相同地址，停止
     target.src = url
+&nbsp;
+    return true
   }
 &nbsp;
   static setNewLink(url: string): void {
@@ -211,7 +229,7 @@ class Backup {
   }
 &nbsp;
   static isStop(oldUrl: string, newUrl?: string): boolean {
-    if (Backup.number &gt;= Backup.maxNumer) return true
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (Backup.number &gt;= Backup.max) <span class="cstat-no" title="statement not covered" >return true</span>
 &nbsp;
     if (!newUrl || !oldUrl) return true
     return oldUrl.trim() === newUrl.trim()
@@ -229,7 +247,7 @@ export default Backup</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Tue Nov 09 2021 11:18:42 GMT+0800 (中国标准时间)
+                at Tue Nov 09 2021 12:17:15 GMT+0800 (中国标准时间)
             </div>
         </div>
         <script src="prettify.js"></script>

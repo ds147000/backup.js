@@ -1,27 +1,33 @@
 
 class Backup {
   static number = 0
-  static maxNumer = 20
+  static max = 40
 
-  static handleLink(target: HTMLLinkElement): void {
+  static handleLink(target: HTMLLinkElement): boolean {
     const oldUrl = target.href
     const url = Backup.getNewUrl(oldUrl, 'LINK')
-    if (Backup.isStop(oldUrl, url)) return // 相同地址，停止
+    if (Backup.isStop(oldUrl, url)) return false // 相同地址，停止
     Backup.setNewLink(url)
+
+    return true
   }
 
-  static handleScript(target: HTMLScriptElement): void {
+  static handleScript(target: HTMLScriptElement): boolean {
     const oldUrl = target.src
     const url = Backup.getNewUrl(oldUrl, 'SCRIPT')
-    if (Backup.isStop(oldUrl, url)) return // 相同地址，停止
+    if (Backup.isStop(oldUrl, url)) return false // 相同地址，停止
     Backup.setNewScript(url)
+
+    return true
   }
 
-  static handleImage(target: HTMLImageElement): void {
+  static handleImage(target: HTMLImageElement): boolean {
     const oldUrl = target.src
     const url = Backup.getNewUrl(oldUrl, 'IMG')
-    if (Backup.isStop(oldUrl, url)) return // 相同地址，停止
+    if (Backup.isStop(oldUrl, url)) return false // 相同地址，停止
     target.src = url
+
+    return true
   }
 
   static setNewLink(url: string): void {
@@ -42,7 +48,7 @@ class Backup {
   }
 
   static isStop(oldUrl: string, newUrl?: string): boolean {
-    if (Backup.number >= Backup.maxNumer) return true
+    if (Backup.number >= Backup.max) return true
 
     if (!newUrl || !oldUrl) return true
     return oldUrl.trim() === newUrl.trim()

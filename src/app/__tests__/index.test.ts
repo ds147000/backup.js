@@ -22,7 +22,7 @@ test('backup.getNewUrl', () => {
 })
 
 test('backup.setNewLink', () => {
-  for(let i = 20; i > 0; i--) Backup.setNewLink('http://baidu.com')
+  for(let i = 100; i > 0; i--) Backup.setNewLink('http://baidu.com')
   expect(Backup.isStop('', '/')).toBe(true)
 })
 
