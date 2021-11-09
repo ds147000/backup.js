@@ -4,7 +4,7 @@
   "description": "用于网络错误导致静态资源加载失败的备用方案",
   "main": "dist/index.js",
   "module": "dist/index.m.js",
-  "iife": "dist/index.mini.js",
+  "iife": "dist/backup.mini.js",
   "scripts": {
     "start": "cross-env NODE_ENV=development rollup -c -w",
     "build": "cross-env NODE_ENV=production rollup -c",
