@@ -18,7 +18,7 @@ describe.each([
 })
 
 test('backup.getNewUrl', () => {
-  expect(Backup.getNewUrl('/home')).toBe('/home')
+  expect(Backup.getNewUrl('/home', 'LINK')).toBe('/home')
 })
 
 test('backup.setNewLink', () => {
@@ -57,5 +57,21 @@ test('backup.handleScript stop', () => {
   const el = document.createElement('script')
   el.src = 'http://123.js'
   Backup.handleScript(el)
+})
+
+test('backup.handleImg', () => {
+  Backup.getNewUrl = () =>  'http://123.jpg'
+  const img = document.createElement('img')
+  img.src = '345.png'
+  Backup.handleImage(img)
+  expect(img.src).toBe('http://123.jpg/')
+})
+
+test('backup.handleImg stop', () => {
+  Backup.getNewUrl = () =>  'http://123.jpg/'
+  const img = document.createElement('img')
+  img.src = 'http://123.jpg'
+  Backup.handleImage(img)
+  expect(img.src).toBe('http://123.jpg/')
 })
 
