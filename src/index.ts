@@ -25,7 +25,7 @@ function listenerWindow() {
 }
 
 function removeListenerWindow() {
-  window.removeEventListener('error', handleWindowError)
+  window.removeEventListener('error', handleWindowError, true)
 }
 
 
@@ -53,7 +53,7 @@ if ('serviceWorker' in navigator) {
       if (!res) removeListenerWindow()
 
       // 当脚本路径被删除则卸载服务
-      if (!window['backupWorkerUrl'] && res.active.scriptURL.indexOf('backup-wroker.js') !== -1) res.unregister()
+      if (!window['backupWorkerUrl'] && res?.active?.scriptURL?.indexOf?.('backup-wroker.js') !== -1) res.unregister()
       if (!window['backupWorkerUrl']) return
       
       listenerServiceWorker()
