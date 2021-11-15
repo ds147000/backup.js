@@ -5,16 +5,21 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <script src="./index.mini.js" ></script>
   <script>
-    window.backup.getNewUrl = function(oldUrl, tagNmae) {
-      if (/\/assets.xrkmm.cn\//.test(oldUrl) === false) return
-      console.log(tagNmae)
-      if (tagNmae !== 'IMG') {
-        return oldUrl.replace(/http.*?assets\.xrkmm\.cn\//, '')
+    window.backupWorkerUrl = '/backup-worker.js'
+  </script>
+  <script src="./backup.mini.js" ></script>
+  <script>
+    window.backup.getNewUrl = function(url, tagName) {
+      if (/\/assets.xrkmm.cn\//.test(url)) {
+        return url.replace(/http.*?assets\.xrkmm\.cn\//, 'https://xrk-assets.oss-cn-shenzhen.aliyuncs.com/');
       }
-      
-      return oldUrl.replace(/http.*?assets\.xrkmm\.cn.*\//, '/')
+      if (url.indexOf('https://xrk-assets.oss-cn-shenzhen.aliyuncs.com/') !== -1) {
+        if (tagName === 'IMG') return ;
+
+        return url.replace(/http.*?assets\.xrkmm\.cn\//, '/');
+      }
+      return ;
     }
   </script>
   <link href="//assets.xrkmm.cn/bundle/css/vendors~bundle.68779033.css?1" rel="stylesheet">
@@ -24,5 +29,10 @@
 <body>
   <h1>降级静态资源</h1>
   <img src="https://assets.xrkmm.cn/u/3202044/654784f9-65a7-426d-9fc0-6155d56ba26c.png" />
+  <picture>
+    <source srcset="https://assets.xrkmm.cn/u/3202044/654784f9-65a7-426d-9fc0-6155d56ba26c.png" type="image/webp" />
+    <img src="https://assets.xrkmm.cn/u/3202044/654784f9-65a7-426d-9fc0-6155d56ba26c.png" />
+</picture>
+  <script src="http://localhost:7001/api/123.jpg" ></script>
 </body>
 </html>

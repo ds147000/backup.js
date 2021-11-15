@@ -8,6 +8,8 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development rollup -c -w",
     "build": "cross-env NODE_ENV=production rollup -c",
+    "start:wk": "cross-env NODE_ENV=development rollup -c rollup.config.worker.js -w",
+    "build:wk": "cross-env NODE_ENV=production rollup -c rollup.config.worker.js ",
     "test": "jest --watch --coverage",
     "test:prod": "jest --silent --no-cache --coverage",
     "prepare": "husky install"
