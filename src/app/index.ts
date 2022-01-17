@@ -36,7 +36,7 @@ class Backup {
     const link = document.createElement('link')
     link.rel = 'stylesheet'
     link.href = url.trim()
-    document?.head?.appendChild(link)
+    document.head?.appendChild(link)
   }
 
   static setNewScript(url: string): void {
@@ -44,7 +44,7 @@ class Backup {
 
     const el = document.createElement('script')
     el.src = url.trim()
-    document?.body?.appendChild(el)
+    document.body?.appendChild(el)
   }
 
   static isStop(oldUrl: string, newUrl?: string): boolean {

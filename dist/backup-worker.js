@@ -2,10 +2,17 @@ function isImgaeAssets(url) {
   return /\.(png|jpg|jpeg|gif)/.test(url)
 }
 
+// 一级域名
+const DOMAIN_1 = 'https://xxxx.com/'
+// 二级域名
+const DOMAIN_2 = 'https://abc/'
+// 三级域名
+const DOMAIN_3 = '/'
+
 self.addEventListener('fetch', function(event) {
   if (event.request.method !== 'GET') return; // 先阻止拦截图片，因为图片 cdn 存在问题无法直接fetch访问
 
-  if (/\/xxx\.\//.test(event.request.url)) {
+  if (new RegExp(DOMAIN_1).test(event.request.url)) {
     event.respondWith(handleAssetsRequest(event.request));
   }
 
@@ -27,7 +34,7 @@ function handleAssetsRequest(request) {
 
 // 二级请求阿里云
 function handleErrorRequestOfAliDomain(request) {
-  var url = request.url.replace(/http.*?xxx\.com\//, 'https://abc/');
+  var url = request.url.replace(new RegExp(DOMAIN_1), DOMAIN_2);
 
   var newRequest = new Request(url, { method: 'GET' });
 
@@ -45,7 +52,7 @@ function handleErrorRequestOfAliDomain(request) {
 }
 
 function handleErrorRequestOfServer(request) {
-  var url = request.url.replace('https://abc/', '/');
+  var url = request.url.replace(new RegExp(DOMAIN_2), DOMAIN_3);
   var newRequest = new Request(url, { method: 'GET' });
 
   return fetch(newRequest)

@@ -28,33 +28,35 @@ function removeListenerWindow() {
   window.removeEventListener('error', handleWindowError, true)
 }
 
+function updateServiceWorker(worker: ServiceWorkerRegistration): void {
+  setTimeout(() => {
+    worker.update()
+  }, 2000)
+}
+
 
 function listenerServiceWorker() {
-  let ServiceWorkerApp: ServiceWorkerRegistration
+  removeListenerWindow()
 
   navigator.serviceWorker.register(window['backupWorkerUrl'], { scope: '/' })
     .then(function(res) {
-      ServiceWorkerApp = res
-      removeListenerWindow()
+      updateServiceWorker(res)
     })
     .catch(function(error) {
       console.error(error)
       listenerWindow()
     })
-
-  if (ServiceWorkerApp) ServiceWorkerApp.update()
 }
 
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.getRegistration()
     .then((res) => {
-      // 先开启全局服务
-      if (!res) removeListenerWindow()
-
       // 当脚本路径被删除则卸载服务
-      if (!window['backupWorkerUrl'] && res?.active?.scriptURL?.indexOf?.('backup-wroker.js') !== -1) res.unregister()
-      if (!window['backupWorkerUrl']) return
+      if (!window['backupWorkerUrl'] || res?.active?.scriptURL?.indexOf('backup-worker.js') === -1) {
+        res?.unregister()
+        return
+      }
       
       listenerServiceWorker()
     })
